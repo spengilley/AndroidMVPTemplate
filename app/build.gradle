@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "19.1.0"
+
+    // For Dagger
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
+    lintOptions{
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "com.spengilley.mvptemplate"
+        minSdkVersion 14
+        targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.test.InstrumentationTestRunner"
+    }
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // signingConfig signingConfigs.release
+        }
+    }
+
+    /** Signing Config
+    if (project.hasProperty("MyProject.properties")
+            && new File(project.property("MyProject.properties")).exists()) {
+
+        Properties props = new Properties()
+        props.load(new FileInputStream(file(project.property("MyProject.properties"))))
+
+        signingConfigs {
+            release {
+                storeFile file(props['keystore'])
+                storePassword props['keystore.password']
+                keyAlias props['keyAlias']
+                keyPassword props['keyPassword']
+            }
+        }
+
+    }
+ **/
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile parent.ext.libraries.dagger
+    provided parent.ext.libraries.dagger_compiler
+    compile parent.ext.libraries.appcompat
+    compile parent.ext.libraries.supportv4
+    compile parent.ext.libraries.supportv13
+    compile parent.ext.libraries.butterknife
+    compile parent.ext.libraries.timber
+
+    compile project(":core")
+}

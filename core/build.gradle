@@ -1,0 +1,19 @@
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+configurations { providedCompile }
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.+'
+    compile parent.ext.libraries.dagger
+    providedCompile parent.ext.libraries.dagger_compiler
+}
+
+
+
+sourceSets.main.compileClasspath += configurations.providedCompile
+sourceSets.test.compileClasspath += configurations.providedCompile
+sourceSets.test.runtimeClasspath += configurations.providedCompile
