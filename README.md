@@ -1,4 +1,4 @@
 AndroidMVPTemplate
 ==================
 
-A template which can be used to quickly set up a new Android project that uses the Model View Presenter design pattern
+An example project that demonstrates using the Android MVP pattern and receiving data from a Service into the UI
