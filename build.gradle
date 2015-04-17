@@ -38,6 +38,6 @@ ext.libraries = [
         appcompat: 'com.android.support:appcompat-v7:22.+',
         supportv4: 'com.android.support:support-v4:22.+',
         butterknife    : 'com.jakewharton:butterknife:5.0.+',
-        timber         :'com.jakewharton.timber:timber:2.4.+'
+        timber   : 'com.jakewharton.timber:timber:2.4.+'
 ]
 
