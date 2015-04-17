@@ -1,22 +1,22 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
 
     // For Dagger
     packagingOptions {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
     }
 
-    lintOptions{
+    lintOptions {
         abortOnError false
     }
 
     defaultConfig {
         applicationId "com.spengilley.mvptemplate"
         minSdkVersion 14
-        targetSdkVersion
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.test.InstrumentationTestRunner"
@@ -30,34 +30,22 @@ android {
     }
 
     /** Signing Config
-    if (project.hasProperty("MyProject.properties")
-            && new File(project.property("MyProject.properties")).exists()) {
+     if (project.hasProperty("MyProject.properties")
+     && new File(project.property("MyProject.properties")).exists()) {Properties props = new Properties()
+     props.load(new FileInputStream(file(project.property("MyProject.properties"))))
 
-        Properties props = new Properties()
-        props.load(new FileInputStream(file(project.property("MyProject.properties"))))
-
-        signingConfigs {
-            release {
-                storeFile file(props['keystore'])
-                storePassword props['keystore.password']
-                keyAlias props['keyAlias']
-                keyPassword props['keyPassword']
-            }
-        }
-
-    }
- **/
+     signingConfigs {release {storeFile file(props['keystore'])
+     storePassword props['keystore.password']
+     keyAlias props['keyAlias']
+     keyPassword props['keyPassword']}}}**/
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile parent.ext.libraries.dagger
-    provided parent.ext.libraries.dagger_compiler
-    compile parent.ext.libraries.appcompat
-    compile parent.ext.libraries.supportv4
-    compile parent.ext.libraries.supportv13
-    compile parent.ext.libraries.butterknife
-    compile parent.ext.libraries.timber
-
-    compile project(":core")
+    compile 'com.squareup.dagger:dagger:1.2.2'
+    compile 'com.squareup.dagger:dagger-compiler:1.2.2'
+    compile 'com.android.support:appcompat-v7:22.+'
+    compile 'com.android.support:support-v4:22.+'
+    compile 'com.jakewharton:butterknife:6.1.0'
+    compile 'com.jakewharton.timber:timber:2.5.0'
+    compile project(':core')
 }
